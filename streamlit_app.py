@@ -43,7 +43,15 @@ try :
       streamlit.dataframe(fruityvice_normalized)
 except URLError as e:
     streamlit.error()
-  
+
+# create the repeatable code block (call a function)
+def get_fruitvice_data(this_fruit_choice)
+    fruityvice_response = request.get("https://frutyvice.com/api/fruit/" + this_fruit_choice)
+    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+    return fruitvice_normalized
+
+
+
 # stramlit.stop()
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
